@@ -1,0 +1,96 @@
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { FaSun, FaMoon, FaGithub, FaLinkedin } from "react-icons/fa";
+
+export default function Portfolio() {
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") === "true";
+  });
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
+
+  return (
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
+      {/* Navbar */}
+      <nav className="p-5 flex justify-between items-center bg-gray-200 dark:bg-gray-800 shadow-md fixed w-full top-0 z-50">
+        <h1 className="text-2xl font-extrabold text-gray-800 dark:text-white">Vivek Chauhan</h1>
+        <button onClick={() => setDarkMode(!darkMode)} className="text-2xl transition duration-300">
+          {darkMode ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-gray-600" />}
+        </button>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="h-screen flex flex-col items-center justify-center text-center px-6 bg-gradient-to-br from-blue-500 to-purple-600 dark:from-gray-800 dark:to-gray-900 text-white">
+        <motion.h1 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-5xl font-bold">
+          Hi, I'm Vivek Chauhan
+        </motion.h1>
+        <p className="text-lg mt-2 font-light">Software Developer | Problem Solver</p>
+        <div className="mt-5 flex gap-6 text-3xl">
+          <a href="https://github.com/vivek24chauhan" className="hover:scale-110 transition transform duration-300"><FaGithub /></a>
+          <a href="https://linkedin.com/in/vivek24chauhan" className="hover:scale-110 transition transform duration-300"><FaLinkedin /></a>
+        </div>
+      </section>
+
+      {/* Sections Wrapper */}
+      <div className="max-w-4xl mx-auto p-6 space-y-16">
+        {/* About Me */}
+        <section className="text-center">
+          <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-400">About Me</h2>
+          <p className="mt-3 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">Software Developer with 2.5+ years of experience at EdgeVerve, optimizing core banking and treasury operations within the Finacle Suite. Proficient in C++, SQL, and unit testing, ensuring high coding standards while enhancing system efficiency and user experience.</p>
+        </section>
+
+        {/* Experience */}
+        <section className="text-center">
+          <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-400">Experience</h2>
+          <div className="mt-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+            <p className="text-xl font-semibold">EdgeVerve Systems Limited</p>
+            <p className="text-gray-500">Jan 2025 – Present | Bengaluru, India</p>
+            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 mt-3 space-y-2">
+              <li>Implemented SSL/TLS 1.2 encryption for secure communication.</li>
+              <li>Developed Back-To-Back Trade Deals covering all edge cases.</li>
+              <li>Led migration from Rogue Wave by developing custom C++ classes.</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Projects */}
+        <section className="text-center">
+          <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-400">Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+              <p className="text-xl font-semibold">Cric Info Web Scraping</p>
+              <p className="text-gray-500">Feb 2022 – Jul 2022</p>
+              <p className="mt-2 text-gray-700 dark:text-gray-300">Extracted team and match information using axios and saved data in PDF format.</p>
+            </div>
+            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+              <p className="text-xl font-semibold">Hackathon Web Automation</p>
+              <p className="text-gray-500">Nov 2021 – Jan 2022</p>
+              <p className="mt-2 text-gray-700 dark:text-gray-300">Automated login and moderator assignments using Puppeteer.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Education */}
+        <section className="text-center">
+          <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-400">Education</h2>
+          <p className="mt-3 text-lg text-gray-700 dark:text-gray-300">Guru Tegh Bahadur Institute of Technology</p>
+          <p className="text-gray-500">Bachelor of Engineering in Electronics and Communication (2017 – 2021) | CGPA: 7.6</p>
+        </section>
+
+        {/* Contact */}
+        <section className="text-center">
+          <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-400">Contact</h2>
+          <p className="mt-3 text-lg text-gray-700 dark:text-gray-300">Phone: +91 9560369027</p>
+          <p className="text-lg text-gray-700 dark:text-gray-300">Email: vivek24chauhann@outlook.com</p>
+        </section>
+      </div>
+    </div>
+  );
+}
